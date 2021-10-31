@@ -82,15 +82,21 @@ impl Number {
     }
 
     fn display(&self, power: i64) -> String {
-        match self.sign {
-            false => match self.fractional == String::from("0") {
-                false => format!("{}.{}e{}", self.integer, self.fractional, power),
-                true => format!("{}e{}", self.integer, power),
-            },
-            true => match self.fractional == String::from("0") {
-                false => format!("{}.{}e{}", self.integer, self.fractional, power),
-                true => format!("{}e{}", self.integer, power),
-            },
+        if self.fractional == String::from("0") {
+            format!(
+                "{}{}e{}",
+                if self.sign { "-" } else { "" },
+                self.integer,
+                power
+            )
+        } else {
+            format!(
+                "{}{}.{}e{}",
+                if self.sign { "-" } else { "" },
+                self.integer,
+                self.fractional,
+                power
+            )
         }
     }
 }
