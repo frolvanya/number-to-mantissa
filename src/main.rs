@@ -1,4 +1,3 @@
-#[derive(Debug)]
 struct Number {
     sign: bool,
     integer: String,
@@ -104,7 +103,6 @@ impl Number {
 fn number_to_mantissa(number: f64) -> String {
     let mut power = 0_i64;
     let mut splited_number = Number::new(number);
-    println!("{:#?}", splited_number);
 
     if splited_number.integer == String::from("0") {
         while splited_number.integer == String::from("0") {
@@ -117,7 +115,6 @@ fn number_to_mantissa(number: f64) -> String {
             power += 1;
 
             splited_number = Number::devide_by_10(&splited_number);
-            println!("{:#?}", splited_number);
         }
     }
 
